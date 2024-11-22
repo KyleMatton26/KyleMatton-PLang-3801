@@ -1,21 +1,42 @@
 pub struct Stack<T> {
-    // stack items are private by default
     items: Vec<T>,
 }
 
 impl<T> Stack<T> {
-    // Implement new
 
-    // Implement push
+    pub fn new() -> Self {
+        Stack {
+            items: Vec::with_capacity(INITIAL_CAPACITY),
+        }
+    }
 
-    // Implement pop
+    pub fn push(&mut self, item: T) {
+        if self.items.len() == MAX_CAPACITY {
+            panic!("Stack has reached its maximum capacity");
+        }
+        self.items.push(item);
+    }
 
-    // Implement peek
+    pub fn pop(&mut self) -> Option<T> {
+        self.items.pop()
+    }
 
-    // Implement is_empty
+    pub fn peek(&self) -> Option<&T> {
+        self.items.last()
+    }
 
-    // Implement len
+    pub fn is_empty(&self) -> bool {
+        self.items.is_empty()
+    }
+     
+    pub fn len(&self) -> usize {
+        self.items.len()
+    }
 }
+
+
+const MAX_CAPACITY: usize = 32768;
+const INITIAL_CAPACITY: usize = 16;
 
 #[cfg(test)]
 mod tests {
